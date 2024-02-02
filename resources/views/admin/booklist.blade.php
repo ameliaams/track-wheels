@@ -10,6 +10,8 @@
                 <h4 class="text-blue h4">Booking History</h4>
             </div>
         </div>
+
+        @if ($booking)
         <table class="table">
             <thead>
                 <tr>
@@ -22,28 +24,25 @@
             </thead>
             <tbody>
                 <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td><span class="badge badge-primary">Primary</span></td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                    <td><span class="badge badge-secondary">Secondary</span></td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                    <td><span class="badge badge-success">Success</span></td>
+                    <th scope="row">{{ $booking->booking_id}}</th>
+                    <td>{{ $booking->nama }}</td>
+                    <td>{{ $booking->jenis_kendaraan }}</td>
+                    <td>{{ $booking->tanggal }}</td>
+                    <td>
+                        @if($booking->status == 'Diterima')
+                        <span class="badge badge-success">{{ $booking->status }}</span>
+                        @elseif($booking->status == 'Ditolak')
+                        <span class="badge badge-danger">{{ $booking->status }}</span>
+                        @else
+                        <span class="badge badge-primary">{{ $booking->status }}</span>
+                        @endif
+                    </td>
                 </tr>
             </tbody>
         </table>
+        @else
+        <p>No booking records found.</p>
+        @endif
     </div>
 </div>
 @endsection

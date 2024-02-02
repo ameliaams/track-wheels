@@ -5,24 +5,40 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Booking;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Carbon;
 
 class BookingController extends Controller
 {
     public function index()
     {
-        return view('admin.booking');
+        $booking = Booking::all();
+        return view('admin.booking', compact('booking'));
     }
 
     public function store(Request $request)
     {
-        $booking = new Booking;
+        $user = Auth::user();
 
-        $user = Auth::user()->id;
-        $booking->booking_id = $user;
-        $booking->nama = $request->get('nama');
-        $booking->jenis_kendaraan = $request->get('jenis_kendaraan');
-        $booking->tanggal = $request->get('tanggal');
-        $booking->sopir = $request->get('sopir');
-        $booking->persetujuan = $request->get('persetujuan');
+        $booking = new Booking;
+        $booking->user_id = $user->id;
+        $booking->nama = $request->input('nama');
+        $booking->jenis_kendaraan = $request->input('jenis_kendaraan');
+        $booking->tanggal = Carbon::parse($request->input('tanggal'))->format('Y-m-d');
+        $booking->sopir = $request->input('sopir');
+        $booking->persetujuan = $request->input('persetujuan');
+
+        $booking->save();
+
+        return redirect()->route('admin.booklist')->with('success', 'Berhasil mengajukan pemesanan!');
+    }
+
+
+    public function show()
+    {
+        $id = Auth::user()->id;
+        $akun = Auth::user();
+        $booking = Booking::where('user_id', $id)->with('user')->first();
+
+        return view('admin.booklist', compact('booking'));
     }
 }

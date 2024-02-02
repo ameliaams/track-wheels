@@ -20,6 +20,10 @@ class Booking extends Model
         'persetujuan',
     ];
 
+    protected $casts = [
+        'persetujuan' => 'array',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
