@@ -41,6 +41,6 @@ Route::get('/vehicles', [App\Http\Controllers\VehiclesController::class, 'index'
 Route::get('/drivers', [App\Http\Controllers\DriversController::class, 'index'])->name('admin.drivers');
 
 Route::get('/user', [App\Http\Controllers\HomeController::class, 'index'])->name('user.index');
-Route::get('/request', [App\Http\Controllers\BookreqController::class, 'index'])->name('user.request');
+Route::get('/approval', [App\Http\Controllers\BookreqController::class, 'showRequest'])->name('user.approval');
     // Route::get('/booklist', [App\Http\Controllers\BooklistController::class, 'index'])->name('admin.booklist');
     // Route::get('/vehicles', [App\Http\Controllers\VehiclesController::class, 'index'])->name('admin.vehicles');

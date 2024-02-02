@@ -95,7 +95,7 @@
                         </a>
                     </li>
                     <li class="dropdown">
-                        <a href="{{ asset('/request') }}" class="dropdown-toggle no-arrow">
+                        <a href="{{ asset('/approval') }}" class="dropdown-toggle no-arrow">
                             <span class="micon dw dw-paper-plane1"></span><span class="mtext">Booking Request</span>
                         </a>
                     </li>
