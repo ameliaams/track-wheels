@@ -37,10 +37,11 @@ Route::get('/admin', [App\Http\Controllers\HomeController::class, 'index'])->nam
 Route::get('/booking', [App\Http\Controllers\BookingController::class, 'index'])->name('admin.booking');
 Route::post('/submit', [App\Http\Controllers\BookingController::class, 'store'])->name('submit');
 Route::get('/booklist', [App\Http\Controllers\BooklistController::class, 'index'])->name('admin.booklist');
-Route::get('/vehicles', [App\Http\Controllers\VehiclesController::class, 'index'])->name('admin.vehicles');
 Route::get('/driver/list', [App\Http\Controllers\DriversController::class, 'index'])->name('admin.driver.list');
 Route::post('/driver/store', [App\Http\Controllers\DriversController::class, 'store'])->name('admin.driver.store');
-
+Route::get('/vehicles', [App\Http\Controllers\VehiclesController::class, 'index'])->name('admin.vehicles');
+Route::get('/vehicle/list', [App\Http\Controllers\VehiclesController::class, 'index'])->name('admin.vehicle.list');
+Route::post('/vehicle/store', [App\Http\Controllers\VehiclesController::class, 'store'])->name('admin.vehicle.store');
 
 Route::get('/user', [App\Http\Controllers\HomeController::class, 'index'])->name('user.index');
 Route::get('/approval', [App\Http\Controllers\BookreqController::class, 'showRequest'])->name('user.approval');
