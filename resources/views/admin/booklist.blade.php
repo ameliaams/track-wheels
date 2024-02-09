@@ -11,7 +11,7 @@
             </div>
         </div>
 
-        @if ($booking)
+        @if ($bookings->isNotEmpty())
         <table class="table">
             <thead>
                 <tr>
@@ -23,21 +23,23 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach($bookings as $book)
                 <tr>
-                    <th scope="row">{{ $booking->booking_id}}</th>
-                    <td>{{ $booking->nama }}</td>
-                    <td>{{ $booking->jenis_kendaraan }}</td>
-                    <td>{{ $booking->tanggal }}</td>
+                    <th scope="row">{{ $book->booking_id}}</th>
+                    <td>{{ $book->nama }}</td>
+                    <td>{{ $book->jenis_kendaraan }}</td>
+                    <td>{{ $book->tanggal }}</td>
                     <td>
-                        @if($booking->status == 'Diterima')
-                        <span class="badge badge-success">{{ $booking->status }}</span>
-                        @elseif($booking->status == 'Ditolak')
-                        <span class="badge badge-danger">{{ $booking->status }}</span>
+                        @if($book->status == 'Diterima')
+                        <span class="badge badge-success">{{ $book->status }}</span>
+                        @elseif($book->status == 'Ditolak')
+                        <span class="badge badge-danger">{{ $book->status }}</span>
                         @else
-                        <span class="badge badge-primary">{{ $booking->status }}</span>
+                        <span class="badge badge-primary">{{ $book->status }}</span>
                         @endif
                     </td>
                 </tr>
+                @endforeach
             </tbody>
         </table>
         @else

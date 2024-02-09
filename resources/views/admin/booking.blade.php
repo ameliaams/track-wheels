@@ -35,9 +35,9 @@
                 <label>Driver</label>
                 <select class="custom-select col-12" name="sopir">
                     <option selected="">Choose...</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                    @foreach($drivers as $driver)
+                    <option value="{{ $driver->id }}">{{ $driver->nama }}</option>
+                    @endforeach
                 </select>
             </div>
             <div class="form-group">
@@ -47,19 +47,19 @@
                         <!-- Add name attributes to your checkboxes -->
                         <div class="custom-control custom-checkbox mb-5">
                             <input type="checkbox" class="custom-control-input" id="customCheck1" name="persetujuan[]">
-                            <label class="custom-control-label" for="customCheck1">Check this custom checkbox</label>
+                            <label class="custom-control-label" for="customCheck1">Supervisor 1</label>
                         </div>
                         <div class="custom-control custom-checkbox mb-5">
                             <input type="checkbox" class="custom-control-input" id="customCheck2" name="persetujuan[]">
-                            <label class="custom-control-label" for="customCheck2">Check this custom checkbox</label>
+                            <label class="custom-control-label" for="customCheck2">Supervisor 2</label>
                         </div>
                         <div class="custom-control custom-checkbox mb-5">
                             <input type="checkbox" class="custom-control-input" id="customCheck3" name="persetujuan[]">
-                            <label class="custom-control-label" for="customCheck3">Check this custom checkbox</label>
+                            <label class="custom-control-label" for="customCheck3">Supervisor 3</label>
                         </div>
                         <div class="custom-control custom-checkbox mb-5">
                             <input type="checkbox" class="custom-control-input" id="customCheck4" name="persetujuan[]">
-                            <label class="custom-control-label" for="customCheck4">Check this custom checkbox</label>
+                            <label class="custom-control-label" for="customCheck4">Supervisor 4</label>
                         </div>
                     </div>
                 </div>

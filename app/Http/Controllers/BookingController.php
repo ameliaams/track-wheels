@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Booking;
+use App\Models\Driver;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
 
@@ -12,7 +13,8 @@ class BookingController extends Controller
     public function index()
     {
         $booking = Booking::all();
-        return view('admin.booking', compact('booking'));
+        $drivers = Driver::all();
+        return view('admin.booking', compact('booking', 'drivers'));
     }
 
     public function store(Request $request)
