@@ -44,7 +44,6 @@
                 @endforeach
             </tbody>
         </table>
-        @endif
     </div>
 </div>
 
@@ -65,25 +64,30 @@
                 <p><strong>Date:</strong> <span id="detailDate"></span></p>
             </div>
             <div class="modal-body">
-                <label>Status</label>
-                <div class="custom-control custom-radio col-md-4">
-                    <input type="radio" id="customRadio1" name="status" class="custom-control-input" value="Pending">
-                    <label class="custom-control-label" for="customRadio1">Pending</label>
-                </div>
-                <div class="custom-control custom-radio col-md-4">
-                    <input type="radio" id="customRadio2" name="status" class="custom-control-input" value="Diterima">
-                    <label class="custom-control-label" for="customRadio2">Diterima</label>
-                </div>
-                <div class="custom-control custom-radio col-md-4">
-                    <input type="radio" id="customRadio3" name="status" class="custom-control-input" value="Ditolak">
-                    <label class="custom-control-label" for="customRadio2">Ditolak</label>
-                </div>
+                <form method="post" action="{{ route('user.updateStatus', $b->booking_id) }}" id="myForm">
+                    @csrf
+                    @method('PUT')
+                    <label>Status</label>
+                    <div class="custom-control custom-radio col-md-4">
+                        <input type="radio" id="customRadio1" name="status" class="custom-control-input" value="Pending">
+                        <label class="custom-control-label" for="customRadio1">Pending</label>
+                    </div>
+                    <div class="custom-control custom-radio col-md-4">
+                        <input type="radio" id="customRadio2" name="status" class="custom-control-input" value="Diterima">
+                        <label class="custom-control-label" for="customRadio2">Diterima</label>
+                    </div>
+                    <div class="custom-control custom-radio col-md-4">
+                        <input type="radio" id="customRadio3" name="status" class="custom-control-input" value="Ditolak">
+                        <label class="custom-control-label" for="customRadio2">Ditolak</label>
+                    </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-success">Save</button>
             </div>
+            </form>
         </div>
+        @endif
     </div>
 </div>
 
@@ -97,31 +101,5 @@
         // Tampilkan modal
         $('#detailModal').modal('show');
     }
-
-    // Wait for the document to load
-    document.addEventListener('DOMContentLoaded', function() {
-        var saveButton = document.querySelector('#detailModal .modal-footer .btn-success');
-
-        saveButton.addEventListener('click', function() {
-            var selectedStatus = document.querySelector('input[name="status"]:checked').value;
-
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', '{{ route("user.updateStatus") }}');
-            xhr.setRequestHeader('Content-Type', 'application/json');
-            xhr.setRequestHeader('X-CSRF-TOKEN', '{{ csrf_token() }}'); // Include CSRF token
-            xhr.onload = function() {
-                if (xhr.status === 200) {
-                    $('#detailModal').modal('hide');
-                    // Optionally, you can reload the page or update the UI
-                }
-            };
-
-            var booking_id = document.querySelector('input[name="booking_id"]').value; // Get booking ID
-            xhr.send(JSON.stringify({
-                id: booking_id,
-                status: selectedStatus
-            }));
-        });
-    });
 </script>
 @endsection
