@@ -6,27 +6,34 @@ use Illuminate\Http\Request;
 use App\Models\Booking;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
 
 class BookreqController extends Controller
 {
     public function index()
     {
-        return view('user.request');
+        $bookings = Booking::all();
+        return view('user.request', compact('bookings'));
     }
 
     public function show()
     {
-        $id = Auth::user()->id;
-        $akun = Auth::user();
-
-        return view('user.approval', compact( 'user'));
+        return $this->index();
     }
 
-    public function showRequest()
+    public function updateStatus(Request $request)
     {
-        $id = Auth::user()->id;
-        $booking = Booking::where('user_id', $id)->with('user')->first();
+        $booking = Booking::findOrFail($request->id);
 
-        return view('user.approval', ['booking' => $booking]);
+        // Validasi status yang diterima
+        $validatedData = $request->validate([
+            'status' => ['required', Rule::in(['Diterima', 'Ditolak', 'Pending'])],
+        ]);
+
+        // Simpan status yang diterima
+        $booking->status = $validatedData['status'];
+        $booking->save();
+
+        return response()->json(['success' => true]);
     }
 }
