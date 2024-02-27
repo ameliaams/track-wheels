@@ -21,19 +21,16 @@ class BookreqController extends Controller
         return $this->index();
     }
 
-    public function updateStatus(Request $request)
+    public function updateStatus(Request $request, $id)
     {
-        $booking = Booking::findOrFail($request->id);
-
-        // Validasi status yang diterima
-        $validatedData = $request->validate([
-            'status' => ['required', Rule::in(['Diterima', 'Ditolak', 'Pending'])],
+        $request->validate([
+            'status' => 'required',
         ]);
 
-        // Simpan status yang diterima
-        $booking->status = $validatedData['status'];
-        $booking->save();
+        $bookings = Booking::where('booking_id', $id)->first();
+        $bookings->status = $request->get('status');
+        $bookings->save();
 
-        return response()->json(['success' => true]);
+        return redirect()->route('user.request')->with('success', 'Status has been updated');
     }
 }

@@ -30,9 +30,9 @@
                     <td>{{ $bk->jenis_kendaraan }}</td>
                     <td>{{ $bk->tanggal }}</td>
                     <td>
-                        @if($booking->status == 'Diterima')
+                        @if($booking->status == 'Accepted')
                         <span class="badge badge-success">{{ $bk->status }}</span>
-                        @elseif($booking->status == 'Ditolak')
+                        @elseif($booking->status == 'Rejected')
                         <span class="badge badge-danger">{{ $bk->status }}</span>
                         @else
                         <span class="badge badge-primary">{{ $bk->status }}</span>

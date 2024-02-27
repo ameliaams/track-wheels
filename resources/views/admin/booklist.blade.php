@@ -30,9 +30,9 @@
                     <td>{{ $book->jenis_kendaraan }}</td>
                     <td>{{ $book->tanggal }}</td>
                     <td>
-                        @if($book->status == 'Diterima')
+                        @if($book->status == 'Accepted')
                         <span class="badge badge-success">{{ $book->status }}</span>
-                        @elseif($book->status == 'Ditolak')
+                        @elseif($book->status == 'Rejected')
                         <span class="badge badge-danger">{{ $book->status }}</span>
                         @else
                         <span class="badge badge-primary">{{ $book->status }}</span>

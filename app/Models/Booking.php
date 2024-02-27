@@ -11,7 +11,7 @@ class Booking extends Model
     use HasFactory;
 
     protected $table = 'booking';
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'booking_id';
 
     protected $fillable = [
         'nama',
@@ -37,7 +37,7 @@ class Booking extends Model
 
         static::saving(function ($model) {
             $validator = validator($model->attributes, [
-                'status' => ['required', Rule::in(['Diterima', 'Ditolak', 'Pending'])],
+                'status' => ['required', Rule::in(['Pending', 'Accepted', 'Rejected'])],
             ]);
 
             if ($validator->fails()) {

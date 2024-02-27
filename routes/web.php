@@ -17,7 +17,7 @@ use App\Http\Controllers\HomeController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth/login');
 });
 
 Auth::routes();
@@ -44,7 +44,7 @@ Route::get('/vehicle/list', [App\Http\Controllers\VehiclesController::class, 'in
 Route::post('/vehicle/store', [App\Http\Controllers\VehiclesController::class, 'store'])->name('admin.vehicle.store');
 
 Route::get('/user', [App\Http\Controllers\HomeController::class, 'index'])->name('user.index');
-Route::get('/approval', [App\Http\Controllers\BookreqController::class, 'index'])->name('user.approval');
-Route::post('/admin/updateStatus', [App\Http\Controllers\BookreqController::class, 'updateStatus'])->name('user.updateStatus');
+Route::get('/approval', [App\Http\Controllers\BookreqController::class, 'index'])->name('user.request');
+Route::put('/updateStatus/{id}', [App\Http\Controllers\BookreqController::class, 'updateStatus'])->name('user.updateStatus');
     // Route::get('/booklist', [App\Http\Controllers\BooklistController::class, 'index'])->name('admin.booklist');
     // Route::get('/vehicles', [App\Http\Controllers\VehiclesController::class, 'index'])->name('admin.vehicles');

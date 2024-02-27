@@ -31,15 +31,15 @@
                     <td>{{ $b->jenis_kendaraan }}</td>
                     <td>{{ $b->tanggal }}</td>
                     <td>
-                        @if($b->status == 'Diterima')
+                        @if($b->status == 'Accepted')
                         <span class="badge badge-success">{{ $b->status }}</span>
-                        @elseif($b->status == 'Ditolak')
+                        @elseif($b->status == 'Rejected')
                         <span class="badge badge-danger">{{ $b->status }}</span>
                         @else
                         <span class="badge badge-primary">{{ $b->status }}</span>
                         @endif
                     </td>
-                    <td><button class="btn btn-primary btn-sm" onclick="showDetailModal('{{ $b->nama }}', '{{ $b->jenis_kendaraan }}', '{{ $b->tanggal }}')"><i class="fa fa-search"></i> Detail</button></td>
+                    <td><button class="btn btn-primary btn-sm" onclick="showDetailModal('{{ $b->nama }}', '{{ $b->jenis_kendaraan }}', '{{ $b->tanggal }}', '{{ $b->status }}', '{{ $b->booking_id }}')"><i class="fa fa-search"></i> Detail</button></td>
                 </tr>
                 @endforeach
             </tbody>
@@ -69,21 +69,21 @@
                     @method('PUT')
                     <label>Status</label>
                     <div class="custom-control custom-radio col-md-4">
-                        <input type="radio" id="customRadio1" name="status" class="custom-control-input" value="Pending">
-                        <label class="custom-control-label" for="customRadio1">Pending</label>
+                        <input type="radio" id="statusPending" name="status" class="custom-control-input" value="Pending">
+                        <label class="custom-control-label" for="statusPending">Pending</label>
                     </div>
                     <div class="custom-control custom-radio col-md-4">
-                        <input type="radio" id="customRadio2" name="status" class="custom-control-input" value="Diterima">
-                        <label class="custom-control-label" for="customRadio2">Diterima</label>
+                        <input type="radio" id="statusAccepted" name="status" class="custom-control-input" value="Accepted">
+                        <label class="custom-control-label" for="statusAccepted">Accepted</label>
                     </div>
                     <div class="custom-control custom-radio col-md-4">
-                        <input type="radio" id="customRadio3" name="status" class="custom-control-input" value="Ditolak">
-                        <label class="custom-control-label" for="customRadio2">Ditolak</label>
+                        <input type="radio" id="statusRejected" name="status" class="custom-control-input" value="Rejected">
+                        <label class="custom-control-label" for="statusRejected">Rejected</label>
                     </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-success">Save</button>
+                <button type="submit" class="btn btn-success" id="saveButton">Save</button>
             </div>
             </form>
         </div>
@@ -92,7 +92,7 @@
 </div>
 
 <script>
-    function showDetailModal(name, vehicleType, date) {
+    function showDetailModal(name, vehicleType, date, status, bookingId) {
         // Isi detail data pada modal
         document.getElementById('detailName').innerText = name;
         document.getElementById('detailVehicleType').innerText = vehicleType;
