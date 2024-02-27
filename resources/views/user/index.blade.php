@@ -27,7 +27,20 @@
                         </div>
                         <div class="widget-data">
                             <div class="h4 mb-0">400</div>
-                            <div class="weight-600 font-14">Passenger Vehicle</div>
+                            <div class="weight-600 font-14">Drivers</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 mb-30">
+                <div class="card-box height-100-p widget-style1">
+                    <div class="d-flex flex-wrap align-items-center">
+                        <div class="progress-data">
+                            <div id="chart3"></div>
+                        </div>
+                        <div class="widget-data">
+                            <div class="h4 mb-0">350</div>
+                            <div class="weight-600 font-14">Cargo Vehicle</div>
                         </div>
                     </div>
                 </div>
