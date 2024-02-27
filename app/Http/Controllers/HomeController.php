@@ -68,7 +68,7 @@ class HomeController extends Controller
         if ($user->role == 'Admin') {
             return view('admin.index', compact('users', 'driver', 'passenger', 'cargo', 'labels', 'passengerData', 'cargoData'));
         } elseif ($user->role == 'User') {
-            return view('user.index', compact('user', 'driver', 'passenger', 'cargo', 'labels', 'passengerData', 'cargoData'));
+            return view('user.index', compact('users', 'driver', 'passenger', 'cargo', 'labels', 'passengerData', 'cargoData'));
         }
     }
 }
